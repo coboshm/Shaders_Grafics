@@ -1,5 +1,6 @@
 // simple fragment shader
 uniform float time;
+uniform int N;
 
 void main()
 {
@@ -9,17 +10,19 @@ void main()
 	vec4 color;
 	int colory, colorx;
 
+	float tamany = 1.0/N;
+
 	float posX = gl_TexCoord[0].s;
 	float posY = gl_TexCoord[0].t;
 
 	// Nos aseguramos que posX y posY esten entre 0 y 1
-	posX = posX - floor(posX);
-	posY = posY - floor(posY);
+	posX = fract(posX);
+	posY = fract(posY);
 
-	colory = posY/0.125;
+	colory = posY/tamany;
 	colory = mod(colory,2);
 
-	colorx = posX/0.125;
+	colorx = posX/tamany;
 	colorx = mod(colorx,2);
 
 	if(colorx == 1) {
