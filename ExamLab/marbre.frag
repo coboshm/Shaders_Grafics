@@ -35,5 +35,6 @@ void main()
 		finalColor = mix(redish,vec4(1,1,1,1),r);
 	}
 	
-	gl_FragColor = shading(normal, normalize(position).xyz, finalColor);
+	
+	gl_FragColor = shading(normalize(gl_NormalMatrix*normal), normalize(vec4(0,0,0,1)-(gl_ModelViewMatrix*position)).xyz, finalColor);
 }
